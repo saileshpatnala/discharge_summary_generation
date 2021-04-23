@@ -9,5 +9,5 @@ Vince Hartman - vch6@cornell.edu <br>
 Sai Patnala - sgp78@cornell.edu <br>
 Claus-Philipp Feuring - cf483@cornell.edu <br>
 Yichen Shao - ys2233@cornell.edu <br>
-Colin Gladue - spg39@cornell.edu <br>
+Colin Gladue - cpg39@cornell.edu <br>
 Cyrus Tam - lt469@cornell.edu <br>
