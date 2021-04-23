@@ -4,25 +4,7 @@ import pandas as pd
 
 from datetime import datetime
 from string import punctuation
-
-
-class Params:
-
-    DATA_PATH = '../data/mimic-iii-clinical-database-1.4/mimic-iii-clinical-database-1.4/NOTEEVENTS.csv'
-    # DATA_PATH = './random_subset.csv'
-
-    # Table attributes
-    HADM_ID_STR = 'HADM_ID'
-    CATEGORY_STR = 'CATEGORY'
-    DESCRIPTION_STR = 'DESCRIPTION'
-    TEXT_STR = 'TEXT'
-    STORETIME_STR = 'STORETIME'
-
-    # Category attribute - table values
-    DISCHARGE_SUMMARY_CATEGORY_VALUE_STR = 'Discharge summary'
-    OTHER_VALUES_CATEGORY_STR_LIST = ['Echo', 'ECG', 'Nursing', 'Physician ', 'Rehab Services',
-                                      'Case Management ', 'Respiratory ', 'Nutrition', 'General', 'Social Work',
-                                      'Pharmacy', 'Consult', 'Radiology', 'Nursing/other']
+from data_preparation_claus.params import Params
 
 
 class DataPreparer:
