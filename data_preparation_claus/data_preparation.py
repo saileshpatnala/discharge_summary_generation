@@ -85,35 +85,35 @@ class DataPreparer:
 
         return data_dict
 
-    @classmethod
-    def clean_string(cls, string_raw):
-
-        # mark ups
-        string_temp = string_raw.replace('\n', ' ')
-
-        # get rid of underscores
-        string_temp = string_temp.replace('_', '')
-
-        # get rid of [** ... **] things
-        string_temp = re.sub(r'\[\*\*[^\]|\[]*\*\*]', '', string_temp)
-
-        # remove everything that has a number
-        string_temp = ' '.join(s for s in string_temp.split() if not any(c.isdigit() for c in s))
-
-        # remove everything that has a special character, except from {.}
-        punctuation_set = punctuation.replace('.', '')
-        string_temp = ' '.join(s for s in string_temp.split() if not any(c in punctuation_set for c in s))
-
-        # remove any word that contains more than five capital letters
-        string_temp = ' '.join(s for s in string_temp.split() if sum(1 for c in s if c.isupper()) < 15)
-
-        # only one white space
-        string_temp = re.sub(r' +', ' ', string_temp)
-
-        # final cleaned string
-        string_cleaned = string_temp
-
-        return string_cleaned
+    # @classmethod
+    # def clean_string(cls, string_raw):
+    #
+    #     # mark ups
+    #     string_temp = string_raw.replace('\n', ' ')
+    #
+    #     # get rid of underscores
+    #     string_temp = string_temp.replace('_', '')
+    #
+    #     # get rid of [** ... **] things
+    #     string_temp = re.sub(r'\[\*\*[^\]|\[]*\*\*]', '', string_temp)
+    #
+    #     # remove everything that has a number
+    #     string_temp = ' '.join(s for s in string_temp.split() if not any(c.isdigit() for c in s))
+    #
+    #     # remove everything that has a special character, except from {.}
+    #     punctuation_set = punctuation.replace('.', '')
+    #     string_temp = ' '.join(s for s in string_temp.split() if not any(c in punctuation_set for c in s))
+    #
+    #     # remove any word that contains more than five capital letters
+    #     string_temp = ' '.join(s for s in string_temp.split() if sum(1 for c in s if c.isupper()) < 15)
+    #
+    #     # only one white space
+    #     string_temp = re.sub(r' +', ' ', string_temp)
+    #
+    #     # final cleaned string
+    #     string_cleaned = string_temp
+    #
+    #     return string_cleaned
 
     @classmethod
     def load_data(cls):
