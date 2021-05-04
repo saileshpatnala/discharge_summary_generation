@@ -4,7 +4,8 @@ import pandas as pd
 
 from datetime import datetime
 from string import punctuation
-from data_preparation_claus.params import Params
+from dataset_creation.params import Params
+from dataset_creation.text_cleaning import TextCleaner
 
 
 class DataPreparer:
@@ -37,8 +38,8 @@ class DataPreparer:
                 for entry in entries_sorted:
                     x += entry[0]
                     x += ' '
-                if len(x) > 1000:
-                    dataset.append([str(hadm_id), x, y[0]])
+                if len(x) > 1000 and len(y[0][0]) > 100:
+                    dataset.append([str(hadm_id), x, y[0][0]])
 
         # save data set
         print('Saving final data set...')
@@ -79,41 +80,11 @@ class DataPreparer:
                 else:
                     current_store_time = datetime.strptime(current_store_time, '%Y-%m-%d %H:%M:%S')
                 current_text_raw = row[Params.TEXT_STR]
-                current_text_cleaned = cls.clean_string(current_text_raw)
+                current_text_cleaned = TextCleaner(text_raw=current_text_raw, category=current_category).clean_text()
                 data_dict.get(hadm_id).get(current_category).append((str(current_text_cleaned), current_store_time))
         print('--Data dict created.')
 
         return data_dict
-
-    # @classmethod
-    # def clean_string(cls, string_raw):
-    #
-    #     # mark ups
-    #     string_temp = string_raw.replace('\n', ' ')
-    #
-    #     # get rid of underscores
-    #     string_temp = string_temp.replace('_', '')
-    #
-    #     # get rid of [** ... **] things
-    #     string_temp = re.sub(r'\[\*\*[^\]|\[]*\*\*]', '', string_temp)
-    #
-    #     # remove everything that has a number
-    #     string_temp = ' '.join(s for s in string_temp.split() if not any(c.isdigit() for c in s))
-    #
-    #     # remove everything that has a special character, except from {.}
-    #     punctuation_set = punctuation.replace('.', '')
-    #     string_temp = ' '.join(s for s in string_temp.split() if not any(c in punctuation_set for c in s))
-    #
-    #     # remove any word that contains more than five capital letters
-    #     string_temp = ' '.join(s for s in string_temp.split() if sum(1 for c in s if c.isupper()) < 15)
-    #
-    #     # only one white space
-    #     string_temp = re.sub(r' +', ' ', string_temp)
-    #
-    #     # final cleaned string
-    #     string_cleaned = string_temp
-    #
-    #     return string_cleaned
 
     @classmethod
     def load_data(cls):
