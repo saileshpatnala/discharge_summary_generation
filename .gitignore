@@ -1,3 +1,8 @@
+# IDE specific files
+.idea/
+.vscode
+.DS_Store
+
 # Ignoring data files
 data/
 

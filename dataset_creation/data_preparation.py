@@ -1,9 +1,7 @@
-import re
 import tqdm
 import pandas as pd
 
 from datetime import datetime
-from string import punctuation
 from dataset_creation.params import Params
 from dataset_creation.text_cleaning import TextCleaner
 
