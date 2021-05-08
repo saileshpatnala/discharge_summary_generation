@@ -6,3 +6,4 @@ Steps to create v1 of the MIMIC-III dataset for discharge summary predictions
   
 * Run the `data_preparation.py` file. Should take a few minutes to run. The output csv file will be stored as `prepared_dataset.csv`
 
+* Run the `data_splt.py` file. It will create a training, validation and a test set.
