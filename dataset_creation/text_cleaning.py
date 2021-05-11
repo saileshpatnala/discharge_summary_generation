@@ -163,6 +163,7 @@ class TextCleaner:
         text_out = cls.remove_stars(text_out)
         text_out = cls.to_lower(text_out)
         text_out = cls.clean_underscores(text_out)
+        text_out = cls.clean_commas(text_out)
         text_out = cls.clear_spaces(text_out)
         return text_out
 
@@ -173,7 +174,6 @@ class TextCleaner:
 
     @staticmethod
     def remove_stars(text_in):
-        # text_out = re.sub(r'\[\*\*[^\]|\[]*\*\*]', '', text_in)
         text_out = re.sub(r'\[\*\*[A-Za-z\s]*[Nn]ame[^\]|\[]*\*\*]', '<NAME>', text_in)
         text_out = re.sub(r'\[\*\*[0-9][^\]|\[]*\*\*]', '<DATE>', text_out)
         text_out = re.sub(r'\[\*\*[^\]|\[]*\*\*]', '<ENTITY>', text_out)
@@ -187,6 +187,11 @@ class TextCleaner:
     @staticmethod
     def clean_underscores(text_in):
         text_out = text_in.replace('_', '')
+        return text_out
+
+    @staticmethod
+    def clean_commas(text_in):
+        text_out = text_in.replace(',', '')
         return text_out
 
     @staticmethod

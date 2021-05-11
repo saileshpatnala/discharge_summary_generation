@@ -3,7 +3,7 @@
 class Params:
 
     DATA_PATH = '../data/mimic-iii-clinical-database-1.4/mimic-iii-clinical-database-1.4/NOTEEVENTS.csv'
-    # DATA_PATH = './random_subset.csv'
+    # DATA_PATH = './Archive/random_subset.csv'
 
     # Table attributes
     HADM_ID_STR = 'HADM_ID'

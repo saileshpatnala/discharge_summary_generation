@@ -1,5 +1,7 @@
 import tqdm
+import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 from datetime import datetime
 from dataset_creation.params import Params
@@ -16,6 +18,8 @@ class DataPreparer:
 
         dataset = []
         print('Creating final data set...')
+        input_text_len_list = []
+        output_text_len_list = []
         for hadm_id, category_dict in data_dict.items():
 
             # get output
@@ -37,7 +41,34 @@ class DataPreparer:
                     x += entry[0]
                     x += ' '
                 if len(x) > 1000 and len(y[0][0]) > 100:
+                    input_text_len_list.append(len(x.split()))
+                    output_text_len_list.append(len(y[0][0].split()))
                     dataset.append([str(hadm_id), x, y[0][0]])
+
+        # text length statistics
+        print('Input Text Length:')
+        print('---- Max:', np.max(input_text_len_list))
+        print('---- Average:', np.mean(input_text_len_list))
+        print('---- Min:', np.min(input_text_len_list))
+        print('Output Text Length:')
+        print('---- Max:', np.max(output_text_len_list))
+        print('---- Average:', np.mean(output_text_len_list))
+        print('---- Min:', np.min(output_text_len_list))
+
+        # plot distribution
+        plt.hist(x=input_text_len_list, bins=100)
+        plt.xlabel('Bins')
+        plt.ylabel('#Strings in bin')
+        plt.title('Distribution of Input Text Length')
+        plt.savefig('./Distribution of Input Text Length.png', dpi=400)
+        plt.close()
+
+        plt.hist(x=output_text_len_list, bins=100)
+        plt.xlabel('Bins')
+        plt.ylabel('#Strings in bin')
+        plt.title('Distribution of Output Text Length')
+        plt.savefig('./Distribution of Output Text Length.png', dpi=400)
+        plt.close()
 
         # save data set
         print('Saving final data set...')
