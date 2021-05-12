@@ -60,20 +60,20 @@ class DataPreparer:
         plt.xlabel('Bins')
         plt.ylabel('#Strings in bin')
         plt.title('Distribution of Input Text Length')
-        plt.savefig('./Distribution of Input Text Length.png', dpi=400)
+        plt.savefig('./input_test_length_distribution.png', dpi=400)
         plt.close()
 
         plt.hist(x=output_text_len_list, bins=100)
         plt.xlabel('Bins')
         plt.ylabel('#Strings in bin')
         plt.title('Distribution of Output Text Length')
-        plt.savefig('./Distribution of Output Text Length.png', dpi=400)
+        plt.savefig('./output_text_length_distribution.png', dpi=400)
         plt.close()
 
         # save data set
         print('Saving final data set...')
-        df = pd.DataFrame(dataset, columns=['HADM_ID', 'Input Text', 'Output Text'])
-        df.to_csv('prepared_dataset.csv')
+        df = pd.DataFrame(dataset, columns=['hadm_id', 'input_text', 'output_text'])
+        df.to_csv('mimic-iii_discharge_summary_cleaned.csv')
 
         print('Finished data set creation.')
 
