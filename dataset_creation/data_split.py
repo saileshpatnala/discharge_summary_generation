@@ -4,7 +4,7 @@ import pandas as pd
 def split_dataset():
 
     # load data set
-    data_set = pd.read_csv('./mimic-iii_discharge_summary_cleaned.csv')
+    data_set = pd.read_csv('mimic-iii_discharge_summary.csv')
     data_set = data_set.sample(frac=1)
 
     # split and save train, val and test

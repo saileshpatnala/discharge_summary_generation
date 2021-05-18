@@ -73,7 +73,7 @@ class DataPreparer:
         # save data set
         print('Saving final data set...')
         df = pd.DataFrame(dataset, columns=['hadm_id', 'input_text', 'output_text'])
-        df.to_csv('mimic-iii_discharge_summary_cleaned.csv')
+        df.to_csv('mimic-iii_discharge_summary.csv')
 
         print('Finished data set creation.')
 
